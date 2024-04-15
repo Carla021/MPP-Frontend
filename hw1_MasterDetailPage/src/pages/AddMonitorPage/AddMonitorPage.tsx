@@ -6,6 +6,7 @@ import Layout from "../../components/layout/Layout";
 import Button from "../../components/button/Button";
 
 import './AddMonitorPage.css'
+import axios from "axios";
 
 function handleOnClick(
     idInput: React.RefObject<HTMLInputElement>,
@@ -38,8 +39,17 @@ const AddMonitorPage = () => {
     const handleClickOnWrapper = () => {
         try {
             const inputMonitor = handleOnClick(idInput, brandInput, refreshRateInput, urlInput);
-            monitorsContext?.addMonitor(inputMonitor);
-            navigate('/');
+            
+            axios.post('http://localhost:5000/api/addMonitor', inputMonitor)
+                .then(response => {
+                    monitorsContext?.addMonitor(response.data);
+                    navigate('/');
+                })
+                .catch(error => {
+                    console.error('Error adding monitor:', error);
+                }); 
+            // monitorsContext?.addMonitor(inputMonitor);
+            // navigate('/');
         } catch (error) {
             alert(error);
         }

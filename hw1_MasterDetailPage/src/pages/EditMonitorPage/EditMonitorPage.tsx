@@ -6,6 +6,7 @@ import Layout from "../../components/layout/Layout";
 import Button from "../../components/button/Button";
 
 import "./EditMonitorPage.css";
+import axios from "axios";
 
 const EditMonitorPage = () => {
   document.title = "Edit a monitor";
@@ -61,8 +62,18 @@ const EditMonitorPage = () => {
         monitorUrl
       );
 
-      monitorsContext?.editMonitor(monitorId, updatedMonitor);
-      navigate("/"); // Navigate back to the main page after editing
+      axios.put(`http://localhost:5000/api/monitors/${updatedMonitor.getId()}`, updatedMonitor)
+        .then(response => {
+          monitorsContext?.editMonitor(updatedMonitor.getId(), new Monitor(response.data.id, response.data.brand, response.data.refreshRate, response.data.pictureUrl));
+          navigate("/");
+        })
+        .catch(error => {
+          console.error("Error updating monitor:", error);
+        });
+
+      // monitorsContext?.editMonitor(monitorId, updatedMonitor);
+      // navigate("/"); // Navigate back to the main page after editing
+      
     } catch (error) {
       alert(error);
     }

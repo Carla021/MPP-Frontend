@@ -1,10 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import { MonitorCardPropsType } from "../../types/MonitorCardProps.types";
 
-import MonitorImage1 from "../../assets/monitor1.jpg"
-import MonitorImage2 from "../../assets/monitor2.jpg"
+import MonitorImage1 from "../../assets/monitor1.jpg";
+import MonitorImage2 from "../../assets/monitor2.jpg";
 
 import "./MonitorCard.css";
+import axios from "axios";
 
 const MonitorCard = ({ givenMonitor, removeMethod }: MonitorCardPropsType) => {
   // let path: string = "./assets/" + givenMonitor.getPictureUrl();
@@ -15,12 +16,15 @@ const MonitorCard = ({ givenMonitor, removeMethod }: MonitorCardPropsType) => {
     navigate("/MonitorDetails/" + givenMonitor.getId());
   };
 
-  const handleEditOnClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const handleEditOnClick = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
     e.stopPropagation();
     navigate("/editMonitor/" + givenMonitor.getId());
-  }
+  };
 
-  const MonitorImage = givenMonitor.getId() == 1 ? MonitorImage1 : MonitorImage2;
+  const MonitorImage =
+    givenMonitor.getId() == 1 ? MonitorImage1 : MonitorImage2;
 
   return (
     <div
@@ -32,16 +36,23 @@ const MonitorCard = ({ givenMonitor, removeMethod }: MonitorCardPropsType) => {
         className="remove-button"
         onClick={(e) => {
           e.stopPropagation(); // any parent elements that also have click event listeners will not receive the event
-          removeMethod(givenMonitor.getId());
+
+          // removeMethod(givenMonitor.getId());
+
+          axios
+            .delete(`http://localhost:5000/api/monitors/${givenMonitor.getId()}`)
+            .then(() => {
+              removeMethod(givenMonitor.getId());
+            })
+            .catch((error) => {
+              console.error("Error deleting monitor:", error);
+            });
         }}
       >
         X
       </button>
 
-      <button
-        className="edit-button"
-        onClick={handleEditOnClick}
-      >
+      <button className="edit-button" onClick={handleEditOnClick}>
         Edit
       </button>
 

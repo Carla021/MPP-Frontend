@@ -1,6 +1,7 @@
 {
   "name": "hw1-masterdetailpage",
   "private": true,
+  "proxy": "http://localhost:5000/",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
@@ -10,11 +11,16 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
+    "@mui/material": "^5.15.15",
+    "axios": "^1.6.8",
     "chart.js": "^4.4.2",
     "react": "^18.2.0",
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.22.3"
+    "react-router-dom": "^6.22.3",
+    "socket.io-client": "^4.7.5"
   },
   "devDependencies": {
     "@types/react": "^18.2.56",

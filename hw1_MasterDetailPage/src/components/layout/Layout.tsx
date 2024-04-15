@@ -4,6 +4,7 @@ import { Header } from "../header/Header"
 import './Layout.css'
 
 const Layout = ({children}: any) => {
+
   return (
     <div className="layout-container">
         <Header />

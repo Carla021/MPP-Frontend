@@ -7,9 +7,10 @@ export type MonitorsContextType = {
     removeMonitor: (monitorId: number) => void;
     editMonitor: (monitorId: number, monitor: Monitor) => void;
     filterMonitor: (criteria: string) => void;
+    isOnline: boolean;
+    isServerOnline: boolean;
 };
 
 export type ProviderType = {
-    monitorContext: MonitorsContextType;
     children: ReactNode;
 }
