@@ -33,6 +33,18 @@ const Header = () => {
                         </Link>
                     </div>
 
+                    <div>
+                        <Link to="/reviews" className='link'>
+                            Reviews
+                        </Link>
+                    </div>
+
+                    <div>
+                        <Link to="/addReview" className='link'>
+                            Add review
+                        </Link>
+                    </div>
+
                 </div>
             </nav>
         </div>

@@ -1,0 +1,37 @@
+.review-details-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    margin-left: 700px;
+    margin-top: 180px;
+    margin-bottom: 220px;
+    
+  }
+  
+  .section {
+    margin-bottom: 20px;
+    width: 200px;
+   
+  }
+  
+  .section h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .section p {
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+  
+  .section p strong {
+    font-weight: bold;
+  }
+  
+  .section p:last-child {
+    margin-bottom: 0;
+  }
+  
